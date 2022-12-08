@@ -1,4 +1,5 @@
 const fs = require('fs/promises');
+const copyLog = require('./copylog');
 
 // P1
 (async ()=>{
@@ -18,7 +19,8 @@ const fs = require('fs/promises');
     }
   }, 0);
 
-  console.log('current floor is: ', finalFloor);
+  // console.log('current floor is: ', finalFloor);
+  copyLog(finalFloor);
 
   //nothing to do with the problem, just messing around
   console.log('number of steps is: ', parsedInput.length);
@@ -29,7 +31,6 @@ const fs = require('fs/promises');
 })()
 
 // P2
-console.log('-______________________________________________________________-')
 (async ()=>{
 
   const example = '((())))))'; //-1
@@ -53,5 +54,6 @@ console.log('-______________________________________________________________-')
       return floor;
   }, 0);
 
-  console.log('first enter is: ', firstEnter2Basement);
+  copyLog(firstEnter2Basement);
+  // console.log('first enter is: ', firstEnter2Basement);
 })()

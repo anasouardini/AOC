@@ -1,4 +1,5 @@
 const fs = require('fs/promises');
+const copyLog = require('./copylog');
 
 // P1
 (async () => {
@@ -14,15 +15,14 @@ const fs = require('fs/promises');
   const parsedInput = parse(fileInput);
 
   const getSurface = (l, w, h) => {
+    let extra = [l, w, h].sort((a, b) => a - b);
 
-    let extra = [l, w, h].sort((a,b)=>a-b);
-    extra = extra[0]*extra[1];
-    
+    extra = extra[0] * extra[1];
     const surface = 2 * (l * w + w * h + l * h);
     const total = surface + extra;
 
-    if (l == 11) console.log(total);
-    return total;// in square feet
+    // if (l == 11) console.log(total);
+    return total; // in square feet
   };
 
   const solve = (presents) => {
@@ -35,7 +35,7 @@ const fs = require('fs/promises');
     return presents.reduce(getTotalSurface, 0);
   };
 
-  console.log('solution 1: ', solve(parsedInput));
+  copyLog(solve(parsedInput))
 })();
 
 //P2
@@ -52,11 +52,10 @@ const fs = require('fs/promises');
   const parsedInput = parse(fileInput);
 
   const ribbenBow = (l, w, h) => {
+    let ribben = [l, w, h].sort((a, b) => a - b);
+    let bow = ribben[0] * ribben[1] * ribben[2];
+    ribben = ribben[0] * 2 + ribben[1] * 2;
 
-    let ribben = [l, w, h].sort((a,b)=>a-b);
-    let bow = ribben[0]*ribben[1]*ribben[2];
-    ribben= ribben[0]*2+ribben[1]*2;
-    
     // console.log(ribben)
     const total = ribben + bow;
 
@@ -73,5 +72,5 @@ const fs = require('fs/promises');
     return presents.reduce(getTotalSurface, 0);
   };
 
-  console.log('solution 2: ', solve(parsedInput));
+  copyLog(solve(parsedInput))
 })();
